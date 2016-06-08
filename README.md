@@ -1,3 +1,3 @@
 # rpi-cron-example
 
-RPi-compatible Docker Image - example usage of a cron job in a container 
+Raspberry Pi compatible docker image that illustrates usage of a cron job in a container 

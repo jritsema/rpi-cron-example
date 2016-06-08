@@ -1,17 +1,10 @@
-# Pull base image
-FROM resin/rpi-raspbian:wheezy
-MAINTAINER Dieter Reuter <dieter@hypriot.com>
+FROM hypriot/rpi-alpine-scratch
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    cron \
-    rsyslog \
-    --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk update && \
+  apk upgrade && \
+  apk add bash && \
+  rm -rf /var/cache/apk/*
 
-# Import crontab file
-ADD ./crontab /etc/crontab
-RUN touch /var/log/cron.log
+ADD ./crontab /etc/crontabs/root
 
-# Define default command
-CMD rsyslogd && cron && tail -f /var/log/syslog /var/log/cron.log
+CMD ["crond", "-f", "-d", "8"]

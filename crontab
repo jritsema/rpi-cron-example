@@ -1,1 +1,2 @@
-*/1 * * * * root echo hypriot/rpi-cron-example >>/var/log/cron.log 2>&1
+* * * * * echo "Hello world"
+
